@@ -2,13 +2,18 @@
 
 import './App.css'
 import React from 'react'
+import {Router,Routes,Route} from "react-router-dom"
+import Navbar from './components/Navbar'
 
 function App() {
 
 
   return (
    <div>
-    <h1 className='text-red-800'>Hey</h1>
+    <Router>
+      <Navbar/>
+
+    </Router>
    </div>
   )
 }
