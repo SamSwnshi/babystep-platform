@@ -66,6 +66,7 @@ export const login = async (req, res) => {
         email: user.email
       },process.env.JWT_SECRET,{expiresIn: '1d'}
     )
+    console.log(token)
 
      return res.status(200).json({
       message: "Login successful",
