@@ -1,4 +1,4 @@
-// components/MilestoneForm.jsx
+
 import React, { useState } from 'react';
 import api from '../utils/api';
 import { toast } from 'react-hot-toast';
@@ -21,7 +21,7 @@ const MilestoneForm = ({ onAdd, onClose }) => {
       setTitle('');
       setDate('');
       setNote('');
-      onClose(); // Close modal on success
+      onClose(); 
     } catch (err) {
       toast.error(err.response?.data?.message || 'Error adding milestone');
     }

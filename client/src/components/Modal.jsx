@@ -11,7 +11,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
     >
       <div 
         className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 relative"
-        onClick={e => e.stopPropagation()} // Prevent modal from closing when clicking inside
+        onClick={e => e.stopPropagation()} 
       >
         <div className="flex justify-between items-center mb-4 border-b pb-3">
           <h3 className="text-xl font-bold text-gray-800">{title}</h3>

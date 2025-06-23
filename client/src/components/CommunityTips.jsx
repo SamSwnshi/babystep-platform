@@ -13,7 +13,7 @@ const CommunityTips = () => {
                 setLoading(true);
                 const res = await api.get('/tips');
                 setTips(res.data);
-            } catch (err) {
+            } catch (error) {
                 toast.error('Failed to load community tips.');
             } finally {
                 setLoading(false);
@@ -29,7 +29,7 @@ const CommunityTips = () => {
             setTips(prevTips => 
                 prevTips.map(tip => tip._id === id ? res.data : tip)
             );
-        } catch (err) {
+        } catch (error) {
             toast.error('Error liking tip');
         }
     };
