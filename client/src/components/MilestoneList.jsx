@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../utils/api';
 import AddTipForm from './AddTipForm';
-import TipList from './TipList.jsx';
+import TipList from './Tiplist';
 import { Calendar, MessageSquare, Link as LinkIcon, Stethoscope, Baby, Share2 } from 'lucide-react';
 
 const MilestoneList = () => {

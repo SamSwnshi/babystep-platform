@@ -3,7 +3,7 @@ import React from 'react';
 import { ThumbsUp } from 'lucide-react';
 import api from '../utils/api';
 
-const TipList = ({ tips, onLike }) => {
+const Tiplist = ({ tips, onLike }) => {
   const handleLike = async (id) => {
     try {
       const res = await api.put(`/tips/${id}/like`);
@@ -31,4 +31,4 @@ const TipList = ({ tips, onLike }) => {
   );
 };
 
-export default TipList;
+export default Tiplist;
