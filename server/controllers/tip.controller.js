@@ -1,4 +1,20 @@
 import Tip from "../models/tip.models.js";
+import Milestone from "../models/milestones.models.js";
+
+export const getAllTips = async (req, res) => {
+  try {
+    const tips = await Tip.find().populate({
+        path: 'milestoneId',
+        select: 'title'
+    }).populate({
+        path: 'userId',
+        select: 'username'
+    }).sort({ createdAt: -1 });
+    res.json(tips);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 export const getTips = async (req, res) => {
   try {

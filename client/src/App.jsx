@@ -1,29 +1,35 @@
-
-
-import './App.css'
-import React from 'react'
-import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
-import Navbar from './components/Navbar';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard'
-import Register from "./pages/Register"
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import { useAuth } from './context/AuthContext';
+import "./App.css"
+import { Toaster } from 'react-hot-toast';
 
-function App() {
+const PrivateRoute = ({ children }) => {
+  const { token } = useAuth();
+  return token ? children : <Navigate to="/login" />;
+};
 
-
+const App = () => {
   return (
-   <div>
     <Router>
-      <Navbar/>
-        <Routes>
-          <Route path='/' element={<Dashboard/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/register' element={<Register/>}/>
-          
-        </Routes>
+      <Toaster position="top-right" />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
     </Router>
-   </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
