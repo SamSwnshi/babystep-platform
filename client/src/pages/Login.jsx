@@ -8,17 +8,21 @@ import { toast } from 'react-hot-toast';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await api.post('/login', { email, password });
       login({ token: res.data.token, user: res.data.user });
       navigate('/');
     } catch (err) {
       toast.error(err.response?.data?.message || 'Login failed');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -44,8 +48,8 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="w-full mb-4 p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-pink-300 focus:outline-none transition"
         />
-        <button type="submit" className="w-full bg-gradient-to-tr from-pink-500 to-purple-500 text-white p-3 rounded-lg font-bold text-lg shadow hover:opacity-90 transition mb-2">
-          Login
+        <button type="submit" className="w-full bg-gradient-to-tr from-pink-500 to-purple-500 text-white p-3 rounded-lg font-bold text-lg shadow hover:opacity-90 transition mb-2" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
         </button>
         <p className="text-sm mt-2 text-center text-gray-500">
           Don't have an account?{' '}
